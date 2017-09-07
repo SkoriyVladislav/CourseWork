@@ -114,7 +114,7 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyV = sc.nextLine();
-                    stext = Vigenere::shifr(alph, text, keyV);
+                    stext = Vigenere.shifr(alph, text, keyV);
                     System.out.println(stext);
                     break;
                 case 4:
@@ -122,7 +122,7 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyV = sc.nextLine();
-                    stext = Vigenere::deshifr(alph, text, keyV);
+                    stext = Vigenere.deshifr(alph, text, keyV);
                     System.out.println(stext);
                     break;
                 case 5:
@@ -147,7 +147,7 @@ public class Main {
                     }
                     break;
                 case 6:
-                    shifrText = Vigenere::shifr(alph, forShifrText, key3222);
+                    shifrText = Vigenere.shifr(alph, forShifrText, key3222);
                     System.out.println("Вот зашифрованный текст: ");
                     System.out.println(shifrText);
 
@@ -201,7 +201,7 @@ public class Main {
                             break;
                     }
 
-                    stext = Vigenere::deshifr2(alph, shifrText, myKey);
+                    stext = Vigenere.deshifr2(alph, shifrText, myKey);
                     System.out.println(stext);
 
                     break;

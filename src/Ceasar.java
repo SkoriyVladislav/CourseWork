@@ -2,7 +2,7 @@
  * Created by Skori on 07.09.2017.
  */
 public abstract class Ceasar {
-    public static String shifr(char a[], String t, int k){
+    static String shifr(char a[], String t, int k){
         int sizeAlph = a.length;
         int sizeText = t.length();
         int temp = 0;
@@ -26,7 +26,7 @@ public abstract class Ceasar {
     }
 
 
-    public static String deshifr(char a[], String t, int k){
+    static String deshifr(char a[], String t, int k){
         int sizeAlph = a.length;
         int sizeText = t.length();
         int temp = 0;
