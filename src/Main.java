@@ -7,9 +7,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main (String... args) {
-        final String alph[] = {"А", "а", "Б", "б", "В", "в", "Г", "г", "Д", "д", "Е", "е", "Ё", "ё", "Ж", "ж", "З", "з", "И", "и", "Й", "й", "К", "к",
-                "Л", "л", "М", "м", "Н", "н", "О", "о", "П", "п", "Р", "р", "С", "с", "Т", "т", "У", "у", "Ф", "ф", "Х", "х", "Ц", "ц", "Ч", "ч", "Ш", "ш",
-                "Щ", "щ", "Ъ", "ъ", "Ы", "ы", "Ь", "ь", "Э", "э", "Ю", "ю", "Я", "я" };
+        final char alph[] = {'А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Д', 'д', 'Е', 'е', 'Ё', 'ё', 'Ж', 'ж', 'З', 'з', 'И', 'и', 'Й', 'й', 'К', 'к',
+                'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о', 'П', 'п', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'Ф', 'ф', 'Х', 'х', 'Ц', 'ц', 'Ч', 'ч', 'Ш', 'ш',
+                'Щ', 'щ', 'Ъ', 'ъ', 'Ы', 'ы', 'Ь', 'ь', 'Э', 'э', 'Ю', 'ю', 'Я', 'я' };
         int sizeAlph = alph.length / 2;
 
         Scanner sc = new Scanner(System.in);
@@ -95,7 +95,7 @@ public class Main {
                     while (keyC > sizeAlph) {
                         keyC = keyC % sizeAlph;
                     }
-                    stext = Caesar::shifr(alph, text, keyC);
+                    stext = Ceasar.shifr(alph, text, keyC);
                     System.out.println(stext);
                     break;
                 case 2:
@@ -106,7 +106,7 @@ public class Main {
                     while (keyC > sizeAlph) {
                         keyC = keyC % sizeAlph;
                     }
-                    stext = Caesar::deshifr(alph, text, 2 * keyC);
+                    stext = Ceasar.deshifr(alph, text, 2 * keyC);
                     System.out.println(stext);
                     break;
                 case 3:
@@ -126,7 +126,7 @@ public class Main {
                     System.out.println(stext);
                     break;
                 case 5:
-                    shifrText = Caesar::shifr(alph, forShifrText2, key322);
+                    shifrText = Ceasar.shifr(alph, forShifrText2, key322);
                     System.out.println("Вот зашифрованный текст: ");
                     System.out.println(shifrText);
 
@@ -138,7 +138,7 @@ public class Main {
 
                     // Цикл для проверки правильно ли мы выбрали ключ или нет
                     for (int i = 0; i < sizeAlph && flag1.equals("н"); i++) {
-                        String deShifrText = Caesar::deshifr(alph, shifrText, (sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[i])) % sizeAlph);
+                        String deShifrText = Ceasar.deshifr(alph, shifrText, (sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[i])) % sizeAlph);
                         System.out.println("Я предпологаю что ключ: " + arrMaxIndex[i]);
                         System.out.println("А исходный текст: ");
                         System.out.println(deShifrText);
@@ -186,7 +186,7 @@ public class Main {
                                 System.out.println("Введите букву на которую хотите заменить: ");
                                 bukva = sc.nextLine();
                                 for (int i = 1; i < sizeAlph * 2; i = i + 2) {
-                                    if (bukva == alph[i]) {
+                                    if (bukva.equals(alph[i])) {
                                         myKey.set(numb - 1, i);
                                     }
                                 }
