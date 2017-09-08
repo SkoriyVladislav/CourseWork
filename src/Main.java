@@ -201,7 +201,7 @@ public class Main {
                             break;
                     }
 
-                    stext = Vigenere.deshifr2(alph, shifrText, myKey);
+                    stext = Vigenere.deshifr(alph, shifrText, myKey);
                     System.out.println(stext);
 
                     break;
