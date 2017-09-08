@@ -1,8 +1,10 @@
 /**
  * Created by Skori on 07.09.2017.
  */
-public abstract class Ceasar {
-    static String shifr(char a[], String t, int k){
+public class Ceasar implements Hackable {
+
+
+    static String shifr(char a[], String t, int k) {
         int sizeAlph = a.length;
         int sizeText = t.length();
         int temp = 0;
@@ -26,7 +28,7 @@ public abstract class Ceasar {
     }
 
 
-    static String deshifr(char a[], String t, int k){
+    static String deshifr(char a[], String t, int k) {
         int sizeAlph = a.length;
         int sizeText = t.length();
         int temp = 0;
@@ -47,5 +49,15 @@ public abstract class Ceasar {
                 deShifrText[i] = a[(sizeAlph + temp - k) % sizeAlph];
         }
         return new String(deShifrText);
+    }
+
+    @Override
+    public String hack(String t) {
+        int sizeAlph = Alphabet.alph.length;
+        int sizeText = t.length();
+
+
+
+        return ;
     }
 }

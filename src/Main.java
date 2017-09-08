@@ -7,16 +7,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main (String... args) {
-        final char alph[] = {'А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Д', 'д', 'Е', 'е', 'Ё', 'ё', 'Ж', 'ж', 'З', 'з', 'И', 'и', 'Й', 'й', 'К', 'к',
-                'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о', 'П', 'п', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'Ф', 'ф', 'Х', 'х', 'Ц', 'ц', 'Ч', 'ч', 'Ш', 'ш',
-                'Щ', 'щ', 'Ъ', 'ъ', 'Ы', 'ы', 'Ь', 'ь', 'Э', 'э', 'Ю', 'ю', 'Я', 'я' };
-        int sizeAlph = alph.length / 2;
-
         Scanner sc = new Scanner(System.in);
 
         // Кусок непонятного кода который отвечает за случаные циферки от 1 до размера алфавита
-	    final int ONE = 1;
-
 
         String flag = "д";
         String flag1 = "н";
@@ -41,20 +34,20 @@ public class Main {
         String textForAnaliz = "Он съел немного, без аппетита, ложки три-четыре, как бы машинально. Голова болела меньше. Пообедав, протянулся он опять на диван, но заснуть уже не мог, а лежал без движения, ничком, уткнув лицо в подушку. Ему всё грезилось, и всё странные такие были грезы: всего чаще представлялось ему, что он где-то в Африке, в Египте, в каком-то оазисе. Караван отдыхает, смирно лежат верблюды; кругом пальмы растут целым кругом; все обедают. Он же всё пьет воду, прямо из ручья, который тут же, у бока, течет и журчит. И прохладно так, и чудесная-чудесная такая голубая вода, холодная, бежит по разноцветным камням и по такому чистому с золотыми блестками песку... Вдруг он ясно услышал, что бьют часы. Он вздрогнул, очнулся, приподнял голову, посмотрел в окно, сообразил время и вдруг вскочил, совершенно опомнившись, как будто кто его сорвал с дивана. На цыпочках подошел он к двери, приотворил ее тихонько и стал прислушиваться вниз на лестницу. Сердце его страшно билось. Но на лестнице было всё тихо, точно все спали... Дико и чудно показалось ему, что он мог проспать в таком забытьи со вчерашнего дня и ничего еще не сделал, ничего не приготовил... А меж тем, может, и шесть часов било... И необыкновенная лихорадочная и какая-то растерявшаяся суета охватила его вдруг, вместо сна и отупения. Приготовлений, впрочем, было немного. Он напрягал все усилия, чтобы всё сообразить и ничего не забыть; а сердце всё билось, стукало так, что ему дышать стало тяжело. Во-первых, надо было петлю сделать и к пальто пришить -- дело минуты. Он полез под подушку и отыскал в напиханном под нее белье одну, совершенно развалившуюся, старую, немытую свою рубашку. Из лохмотьев ее он выдрал тесьму, в вершок шириной и вершков в восемь длиной. Эту тесьму сложил он вдвое, снял с себя свое широкое, крепкое, из какой-то толстой бумажной материи летнее пальто (единственное его верхнее платье) и стал пришивать оба конца тесьмы под левую мышку изнутри. Руки его тряслись пришивая, но он одолел и так, что снаружи ничего не было видно, когда он опять надел пальто. Иголка и нитки были у него уже давно приготовлены и лежали в столике, в бумажке. Что же касается петли, то это была очень ловкая его собственная выдумка: петля назначалась для топора. Нельзя же было по улице нести топор в руках. А если под пальто спрятать, то все-таки надо было рукой придерживать, что было бы приметно. Теперь же, с петлей, стоит только вложить в нее лезвие топора, и он будет висеть спокойно, под мышкой изнутри, всю дорогу. Запустив же руку в боковой карман пальто, он мог и конец топорной ручки придерживать, чтоб она не болталась; а так как пальто было очень широкое, настоящий мешок, то и не могло быть приметно снаружи, что он что-то рукой, через карман, придерживает. Эту петлю он тоже уже две недели назад придумал.";
 
         // Набор переменных для анализа текстов
-	double arrMaxText[] = new double[sizeAlph]; // В этих массивах хранятся упорядоченные по частоте встречаемости буквы
-        for (int i = 0; i < sizeAlph / 2; i++) {
+	double arrMaxText[] = new double[Alphabet.sizeAlph]; // В этих массивах хранятся упорядоченные по частоте встречаемости буквы
+        for (int i = 0; i < Alphabet.sizeAlph / 2; i++) {
             arrMaxText[i] = 0.0;
         }
-	double arrMaxShifrText[] = new double[sizeAlph];
-        for (int i = 0; i < sizeAlph / 2; i++) {
+	double arrMaxShifrText[] = new double[Alphabet.sizeAlph];
+        for (int i = 0; i < Alphabet.sizeAlph / 2; i++) {
             arrMaxShifrText[i] = 0.0;
         }
-	int arrMaxIndex[] = new int[sizeAlph];
-        for (int i = 0; i < sizeAlph / 2; i++) {
+	int arrMaxIndex[] = new int[Alphabet.sizeAlph];
+        for (int i = 0; i < Alphabet.sizeAlph / 2; i++) {
             arrMaxIndex[i] = 0;
         }
-	int arrMaxShifrIndex[] = new int[sizeAlph];
-        for (int i = 0; i < sizeAlph / 2; i++) {
+	int arrMaxShifrIndex[] = new int[Alphabet.sizeAlph];
+        for (int i = 0; i < Alphabet.sizeAlph / 2; i++) {
             arrMaxShifrIndex[i] = 0;
         }
 
@@ -62,8 +55,8 @@ public class Main {
         //текст для шифровки решёткой Кардано
         String kard = "ТахиондвижетсябыстреескоростисветаАА";
         //создание матрицы текста
-	final int KEYSIZE = 6;
-	int shifrMatrix[][];
+	    final int KEYSIZE = 6;
+	    int shifrMatrix[][] = new int[KEYSIZE][];
         for (int i = 0; i < KEYSIZE; i++) {
             shifrMatrix[i] = new int[KEYSIZE];
         }
@@ -92,8 +85,8 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyC = sc.nextInt();
-                    while (keyC > sizeAlph) {
-                        keyC = keyC % sizeAlph;
+                    while (keyC > Alphabet.sizeAlph) {
+                        keyC = keyC % Alphabet.sizeAlph;
                     }
                     stext = Ceasar.shifr(alph, text, keyC);
                     System.out.println(stext);
@@ -103,8 +96,8 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyC = sc.nextInt();
-                    while (keyC > sizeAlph) {
-                        keyC = keyC % sizeAlph;
+                    while (keyC > Alphabet.sizeAlph) {
+                        keyC = keyC % Alphabet.sizeAlph;
                     }
                     stext = Ceasar.deshifr(alph, text, 2 * keyC);
                     System.out.println(stext);
@@ -132,17 +125,17 @@ public class Main {
 
                     // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
                     // и составляем массив с упорядоченными по частоте индексами букв алфавита
-                    Analiz::anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
+                    Analiz.anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
                     // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
-                    Analiz::anCeas(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
+                    Analiz.anCeas(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
 
                     // Цикл для проверки правильно ли мы выбрали ключ или нет
-                    for (int i = 0; i < sizeAlph && flag1.equals("н"); i++) {
-                        String deShifrText = Ceasar.deshifr(alph, shifrText, (sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[i])) % sizeAlph);
+                    for (int i = 0; i < Alphabet.sizeAlph && flag1.equals("н"); i++) {
+                        String deShifrText = Ceasar.deshifr(alph, shifrText, (Alphabet.sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[i])) % Alphabet.sizeAlph);
                         System.out.println("Я предпологаю что ключ: " + arrMaxIndex[i]);
                         System.out.println("А исходный текст: ");
                         System.out.println(deShifrText);
-                        System.out.println("Если это не похоже на исходный текст введите 'н': ";
+                        System.out.println("Если это не похоже на исходный текст введите 'н': ");
                         flag1 = sc.nextLine();
                     }
                     break;
@@ -155,20 +148,20 @@ public class Main {
                     // и составляем массив с упорядоченными по частоте индексами букв алфавита
 
                     // Первый аргумент - алфавит, второй - зашифрованный текст, третий - массив для хранения частоты встечающихся букв, четвёрный - массив с индексами букв
-                    Analiz::anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
+                    Analiz.anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
                     // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
-                    Analiz::anVig(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
+                    Analiz.anVig(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
 
                     //В этом блоке мы находим ключевое слово исходя из его длины
                     System.out.println("Выебрите длину ключа: ");
                     sizeMyKey = sc.nextInt();
                     for (int i = 0; i < sizeMyKey; i++) {
                         //System.out.println(arrMaxIndex[i] << "   текст") << Analiz::anText(alph, shifrText, i, sizeMyKey)));
-                        myKey.add((2 * sizeAlph + Analiz::anText(alph, shifrText, i, sizeMyKey) - arrMaxIndex[0]) % (2 * sizeAlph) + 1);
+                        myKey.add((2 * Alphabet.sizeAlph + Analiz.anText(alph, shifrText, i, sizeMyKey) - arrMaxIndex[0]) % (2 * Alphabet.sizeAlph) + 1);
                     }
                     System.out.println("Я предполгагаю что ключ к этому тексту: ");
                     for (int i = 0; i < myKey.size(); i++) {
-                        System.out.println(alph[myKey.get(i)]);
+                        System.out.println(Alphabet.alph[myKey.get(i)]);
                     }
                     System.out.println();
 
@@ -185,14 +178,14 @@ public class Main {
                                 numb = sc.nextInt();
                                 System.out.println("Введите букву на которую хотите заменить: ");
                                 bukva = sc.nextLine();
-                                for (int i = 1; i < sizeAlph * 2; i = i + 2) {
-                                    if (bukva.equals(alph[i])) {
+                                for (int i = 1; i < Alphabet.sizeAlph * 2; i = i + 2) {
+                                    if (bukva.equals(Alphabet.alph[i])) {
                                         myKey.set(numb - 1, i);
                                     }
                                 }
                                 System.out.println("Я предполгагаю что ключ к этому тексту: ");
                                 for (int i = 0; i < myKey.size(); i++) {
-                                    System.out.println(alph[myKey.get(i)]);
+                                    System.out.println(Alphabet.alph[myKey.get(i)]);
                                 }
                                 System.out.println();
                                 System.out.println("Если хотите продолжать исправять ключ введите 'д': ");
@@ -207,7 +200,7 @@ public class Main {
                     break;
                 case 7:
                     System.out.println();
-                    shifrMatrix = Kardano::shifr(alph, kard, KEYSIZE);
+                    shifrMatrix = Kardano.shifr(alph, kard, KEYSIZE);
                     for (int i = 0; i < KEYSIZE; i++) {
                         for (int j = 0; j < KEYSIZE; j++) {
                             System.out.print(alph[shifrMatrix[i][j]] + "   ");
