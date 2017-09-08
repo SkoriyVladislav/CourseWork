@@ -30,9 +30,6 @@ public class Main {
         int numb = -1;
         String bukva = "a";
 
-        // Это текст который мы анализируем что бы узнать частоту встречаемости букв в обычом тексте
-        String textForAnaliz = "Он съел немного, без аппетита, ложки три-четыре, как бы машинально. Голова болела меньше. Пообедав, протянулся он опять на диван, но заснуть уже не мог, а лежал без движения, ничком, уткнув лицо в подушку. Ему всё грезилось, и всё странные такие были грезы: всего чаще представлялось ему, что он где-то в Африке, в Египте, в каком-то оазисе. Караван отдыхает, смирно лежат верблюды; кругом пальмы растут целым кругом; все обедают. Он же всё пьет воду, прямо из ручья, который тут же, у бока, течет и журчит. И прохладно так, и чудесная-чудесная такая голубая вода, холодная, бежит по разноцветным камням и по такому чистому с золотыми блестками песку... Вдруг он ясно услышал, что бьют часы. Он вздрогнул, очнулся, приподнял голову, посмотрел в окно, сообразил время и вдруг вскочил, совершенно опомнившись, как будто кто его сорвал с дивана. На цыпочках подошел он к двери, приотворил ее тихонько и стал прислушиваться вниз на лестницу. Сердце его страшно билось. Но на лестнице было всё тихо, точно все спали... Дико и чудно показалось ему, что он мог проспать в таком забытьи со вчерашнего дня и ничего еще не сделал, ничего не приготовил... А меж тем, может, и шесть часов било... И необыкновенная лихорадочная и какая-то растерявшаяся суета охватила его вдруг, вместо сна и отупения. Приготовлений, впрочем, было немного. Он напрягал все усилия, чтобы всё сообразить и ничего не забыть; а сердце всё билось, стукало так, что ему дышать стало тяжело. Во-первых, надо было петлю сделать и к пальто пришить -- дело минуты. Он полез под подушку и отыскал в напиханном под нее белье одну, совершенно развалившуюся, старую, немытую свою рубашку. Из лохмотьев ее он выдрал тесьму, в вершок шириной и вершков в восемь длиной. Эту тесьму сложил он вдвое, снял с себя свое широкое, крепкое, из какой-то толстой бумажной материи летнее пальто (единственное его верхнее платье) и стал пришивать оба конца тесьмы под левую мышку изнутри. Руки его тряслись пришивая, но он одолел и так, что снаружи ничего не было видно, когда он опять надел пальто. Иголка и нитки были у него уже давно приготовлены и лежали в столике, в бумажке. Что же касается петли, то это была очень ловкая его собственная выдумка: петля назначалась для топора. Нельзя же было по улице нести топор в руках. А если под пальто спрятать, то все-таки надо было рукой придерживать, что было бы приметно. Теперь же, с петлей, стоит только вложить в нее лезвие топора, и он будет висеть спокойно, под мышкой изнутри, всю дорогу. Запустив же руку в боковой карман пальто, он мог и конец топорной ручки придерживать, чтоб она не болталась; а так как пальто было очень широкое, настоящий мешок, то и не могло быть приметно снаружи, что он что-то рукой, через карман, придерживает. Эту петлю он тоже уже две недели назад придумал.";
-
         // Набор переменных для анализа текстов
 	double arrMaxText[] = new double[Alphabet.sizeAlph]; // В этих массивах хранятся упорядоченные по частоте встречаемости буквы
         for (int i = 0; i < Alphabet.sizeAlph / 2; i++) {
@@ -88,7 +85,7 @@ public class Main {
                     while (keyC > Alphabet.sizeAlph) {
                         keyC = keyC % Alphabet.sizeAlph;
                     }
-                    stext = Ceasar.shifr(alph, text, keyC);
+                    stext = Ceasar.shifr(text, keyC);
                     System.out.println(stext);
                     break;
                 case 2:
@@ -99,7 +96,7 @@ public class Main {
                     while (keyC > Alphabet.sizeAlph) {
                         keyC = keyC % Alphabet.sizeAlph;
                     }
-                    stext = Ceasar.deshifr(alph, text, 2 * keyC);
+                    stext = Ceasar.deshifr(text, 2 * keyC);
                     System.out.println(stext);
                     break;
                 case 3:
@@ -107,7 +104,7 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyV = sc.nextLine();
-                    stext = Vigenere.shifr(alph, text, keyV);
+                    stext = Vigenere.shifr(text, keyV);
                     System.out.println(stext);
                     break;
                 case 4:
@@ -115,32 +112,20 @@ public class Main {
                     text = sc.nextLine();
                     System.out.println("Введите ключ: ");
                     keyV = sc.nextLine();
-                    stext = Vigenere.deshifr(alph, text, keyV);
+                    stext = Vigenere.deshifr(text, keyV);
                     System.out.println(stext);
                     break;
                 case 5:
-                    shifrText = Ceasar.shifr(alph, forShifrText2, key322);
+                    Ceasar c1 = new Ceasar();
+                    shifrText = Ceasar.shifr(forShifrText2, key322);
                     System.out.println("Вот зашифрованный текст: ");
                     System.out.println(shifrText);
 
-                    // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
-                    // и составляем массив с упорядоченными по частоте индексами букв алфавита
-                    Analiz.anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
-                    // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
-                    Analiz.anCeas(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
-
-                    // Цикл для проверки правильно ли мы выбрали ключ или нет
-                    for (int i = 0; i < Alphabet.sizeAlph && flag1.equals("н"); i++) {
-                        String deShifrText = Ceasar.deshifr(alph, shifrText, (Alphabet.sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[i])) % Alphabet.sizeAlph);
-                        System.out.println("Я предпологаю что ключ: " + arrMaxIndex[i]);
-                        System.out.println("А исходный текст: ");
-                        System.out.println(deShifrText);
-                        System.out.println("Если это не похоже на исходный текст введите 'н': ");
-                        flag1 = sc.nextLine();
-                    }
+                    System.out.println("Исходный текст: " );
+                    System.out.println(c1.hack(shifrText));
                     break;
                 case 6:
-                    shifrText = Vigenere.shifr(alph, forShifrText, key3222);
+                    shifrText = Vigenere.shifr(forShifrText, key3222);
                     System.out.println("Вот зашифрованный текст: ");
                     System.out.println(shifrText);
 
@@ -148,7 +133,7 @@ public class Main {
                     // и составляем массив с упорядоченными по частоте индексами букв алфавита
 
                     // Первый аргумент - алфавит, второй - зашифрованный текст, третий - массив для хранения частоты встечающихся букв, четвёрный - массив с индексами букв
-                    Analiz.anCeas(alph, textForAnaliz, arrMaxText, arrMaxIndex);
+                    Analiz.anCeas(arrMaxText, arrMaxIndex);
                     // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
                     Analiz.anVig(alph, shifrText, arrMaxShifrText, arrMaxShifrIndex);
 
@@ -194,7 +179,7 @@ public class Main {
                             break;
                     }
 
-                    stext = Vigenere.deshifr(alph, shifrText, myKey);
+                    stext = Vigenere.deshifr(shifrText, myKey);
                     System.out.println(stext);
 
                     break;
