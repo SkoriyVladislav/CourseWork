@@ -32,7 +32,7 @@ public class Ceasar implements Hackable {
     static String deshifr(String t, int k) {
         int sizeAlph = Alphabet.sizeAlph;
         int sizeText = t.length();
-        int temp = 0;
+        int temp;
         char deShifrText[] = t.toCharArray();
 
         for (int i = 0; i < sizeText; i++) {

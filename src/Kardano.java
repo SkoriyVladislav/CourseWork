@@ -91,16 +91,6 @@ public abstract class Kardano {
             }
         }
 
-        for (int i = 0; i < KEYSIZE; i++) {
-
-            for (int j = 0; j < KEYSIZE; j++) {
-                System.out.print(keyMatrix[i][j] + "    ");
-            }
-            System.out.println();
-            System.out.println();
-            System.out.println();
-        }
-
         /* вот так должен выглядеть ключ:
 	1 0 0 0
 	0 1 0 0
@@ -124,17 +114,6 @@ public abstract class Kardano {
                     }
                 }
             }
-            for (int i = 0; i < KEYSIZE; i++) {
-                for (int j = 0; j < KEYSIZE; j++) {
-                    System.out.print(a[shifrMatrix[i][j]] + "   ");
-                }
-
-                System.out.println();
-                System.out.println();
-                System.out.println();
-            }
-            System.out.println();
-            System.out.println();
 
             keyMatrix = rotateMatr(keyMatrix, KEYSIZE);
 
