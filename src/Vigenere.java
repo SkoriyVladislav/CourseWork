@@ -42,7 +42,8 @@ public class Vigenere implements Hackable{
             else
                 shifrText[i] = Alphabet.alph[(tempT + tempK - 1) % sizeAlph];
         }
-        return shifrText.toString();
+
+        return new String(shifrText);
     }
 
     static String deshifr(String t, String k) {
@@ -108,7 +109,7 @@ public class Vigenere implements Hackable{
             else
                 deshifrText[i] = Alphabet.alph[(sizeAlph + tempT - tempK + 1) % sizeAlph];
         }
-        return deshifrText.toString();
+        return new String(deshifrText);
     }
 
     @Override
@@ -120,9 +121,13 @@ public class Vigenere implements Hackable{
         // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
         int[] arrMaxShifrIndex = Analiz.analizText(t);
 
-        System.out.println( "Выебрите длину ключа: ");
+        int sizeMyKey = Analiz.anVig(t);
+
+
+
+
         Scanner sc = new Scanner(System.in);
-        int sizeMyKey = sc.nextInt();
+
 
         for (int i = 0; i < sizeMyKey; i++) {
 
@@ -138,19 +143,31 @@ public class Vigenere implements Hackable{
 
 
         System.out.println("Введите 1, если данный ключ корректен.");
-        System.out.println("Введите 2, если хотите заменить определённую букву ключа.");
+        System.out.println("Введите 2, если хотите исправить ключ.");
         int choise2 = sc.nextInt();
 
         switch (choise2) {
             case 1:
                 break;
             case 2:
-                String  flag2 = "д";
+                System.out.print("Введите новый ключ: ");
+                String key = sc.next();
+                char[] keyArr = key.toCharArray();
+                //List<Integer> keyList = new ArrayList<>();
+                for (int i = 0; i < key.length(); i++) {
+                    for (int j = 0; j < Alphabet.sizeAlph * 2; j++) {
+                        if (keyArr[i] == Alphabet.alph[j]) {
+                            myKey.set(i,j);
+                        }
+                    }
+                }
+
+                /*String  flag2 = "д";
                 for (; flag2.equals("д");) {
                     System.out.print("Введите номер буквы которую хотите изменить: ");
                     int numb = sc.nextInt();
                      System.out.print("Введите букву на которую хотите заменить: ");
-                    String bukva = sc.nextLine();
+                    String bukva = sc.next();
                     for (int i = 1; i < Alphabet.sizeAlph * 2; i = i + 2) {
                         if (bukva.charAt(0) == Alphabet.alph[i]) {
                             myKey.set(numb - 1, i);
@@ -164,7 +181,7 @@ public class Vigenere implements Hackable{
                     System.out.println();
                     System.out.print( "Если хотите продолжать исправять ключ введите 'д': ");
                     flag2 = sc.nextLine();
-                }
+                }*/
                 break;
         }
 

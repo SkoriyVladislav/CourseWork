@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Skori on 08.09.2017.
  */
 public class Analiz {
-    static private double[] arr1;
-    static private double[] arrMaxText;
     // Это текст который мы анализируем что бы узнать частоту встречаемости букв в обычом тексте
     static public String textForAnaliz = "Он съел немного, без аппетита, ложки три-четыре, как бы машинально. Голова болела меньше. Пообедав, протянулся он опять на диван, но заснуть уже не мог, а лежал без движения, ничком, уткнув лицо в подушку. Ему всё грезилось, и всё странные такие были грезы: всего чаще представлялось ему, что он где-то в Африке, в Египте, в каком-то оазисе. Караван отдыхает, смирно лежат верблюды; кругом пальмы растут целым кругом; все обедают. Он же всё пьет воду, прямо из ручья, который тут же, у бока, течет и журчит. И прохладно так, и чудесная-чудесная такая голубая вода, холодная, бежит по разноцветным камням и по такому чистому с золотыми блестками песку... Вдруг он ясно услышал, что бьют часы. Он вздрогнул, очнулся, приподнял голову, посмотрел в окно, сообразил время и вдруг вскочил, совершенно опомнившись, как будто кто его сорвал с дивана. На цыпочках подошел он к двери, приотворил ее тихонько и стал прислушиваться вниз на лестницу. Сердце его страшно билось. Но на лестнице было всё тихо, точно все спали... Дико и чудно показалось ему, что он мог проспать в таком забытьи со вчерашнего дня и ничего еще не сделал, ничего не приготовил... А меж тем, может, и шесть часов било... И необыкновенная лихорадочная и какая-то растерявшаяся суета охватила его вдруг, вместо сна и отупения. Приготовлений, впрочем, было немного. Он напрягал все усилия, чтобы всё сообразить и ничего не забыть; а сердце всё билось, стукало так, что ему дышать стало тяжело. Во-первых, надо было петлю сделать и к пальто пришить -- дело минуты. Он полез под подушку и отыскал в напиханном под нее белье одну, совершенно развалившуюся, старую, немытую свою рубашку. Из лохмотьев ее он выдрал тесьму, в вершок шириной и вершков в восемь длиной. Эту тесьму сложил он вдвое, снял с себя свое широкое, крепкое, из какой-то толстой бумажной материи летнее пальто (единственное его верхнее платье) и стал пришивать оба конца тесьмы под левую мышку изнутри. Руки его тряслись пришивая, но он одолел и так, что снаружи ничего не было видно, когда он опять надел пальто. Иголка и нитки были у него уже давно приготовлены и лежали в столике, в бумажке. Что же касается петли, то это была очень ловкая его собственная выдумка: петля назначалась для топора. Нельзя же было по улице нести топор в руках. А если под пальто спрятать, то все-таки надо было рукой придерживать, что было бы приметно. Теперь же, с петлей, стоит только вложить в нее лезвие топора, и он будет висеть спокойно, под мышкой изнутри, всю дорогу. Запустив же руку в боковой карман пальто, он мог и конец топорной ручки придерживать, чтоб она не болталась; а так как пальто было очень широкое, настоящий мешок, то и не могло быть приметно снаружи, что он что-то рукой, через карман, придерживает. Эту петлю он тоже уже две недели назад придумал.";
 
@@ -17,10 +16,15 @@ public class Analiz {
         int sizeText = t.length();
         double max = 0;
 
-	    /*double[] arr1 = new double[sizeAlph / 2];
+	    double[] arr1 = new double[sizeAlph / 2];
         for (int i = 0; i < sizeAlph / 2; i++) {
             arr1[i] = 0.0;
-        }*/
+        }
+
+        double[] arrMaxText = new double[sizeAlph / 2];
+        for (int i = 0; i < sizeAlph / 2; i++) {
+            arr1[i] = 0.0;
+        }
 
         // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
         for (int i = 1, k = 0; i < sizeAlph; i += 2, k++) {
@@ -68,7 +72,7 @@ public class Analiz {
     }
 
 
-    public static void anVig(String t) {
+    public static int anVig(String t) {
         int sizeAlph = Alphabet.sizeAlph;
         int sizeText = t.length();
         double max = 0;
@@ -78,7 +82,7 @@ public class Analiz {
         int znaki = 0;
         for (int i = 0; i < sizeText; i++) {
             int tempT = -1;
-            for (int j = 0; j < sizeAlph; j++) {
+            for (int j = 0; j < sizeAlph * 2; j++) {
                 if (t.charAt(i) == Alphabet.alph[j]) {
                     tempT = j;
                     break;
@@ -88,16 +92,20 @@ public class Analiz {
                 znaki++;
             }
         }
+
+        System.out.println("Знаки: "  + znaki);
+
         int sizeNewText = sizeText - znaki;
 	    char[] newText = new char[sizeNewText];
         for (int i = 0, k = 0; k < sizeNewText; i++) {
             int tempT = -1;
-            for (int j = 0; j < sizeAlph; j++) {
+            for (int j = 0; j < sizeAlph * 2; j++) {
                 if (t.charAt(i) == Alphabet.alph[j]) {
                     tempT = j;
                     break;
                 }
             }
+
             if (tempT >= 0) {
                 if (tempT % 2 != 0)
                     newText[k] = Alphabet.alph[tempT];
@@ -114,9 +122,9 @@ public class Analiz {
         List<Integer> index = new ArrayList<>(0);
         int kol = 0;
         // Находим последовательность из двух букв которая встречается чаще всего
-        for (int i = 1; i < sizeAlph; i += 2) {
+        for (int i = 1; i < sizeAlph * 2; i += 2) {
             posl1[0] = Alphabet.alph[i];
-            for (int j = 1; j < sizeAlph; j += 2) {
+            for (int j = 1; j < sizeAlph * 2; j += 2) {
                 posl1[1] = Alphabet.alph[j];
                 int temp = 0;
                 for (int k = 0; k < sizeNewText - 1; k++) {
@@ -163,7 +171,13 @@ public class Analiz {
         System.out.println();
         System.out.print( "Исходя из этого попытайтесь угадать длину ключевого слова." );
         System.out.print("Учтите что если введёное вами число не подойдет то ответ можно будет изменить." );
-        return;
+
+
+
+        System.out.println( "Выебрите длину ключа: ");
+        Scanner sc = new Scanner(System.in);
+        int sizeMyKey = sc.nextInt();
+        return sizeMyKey;
     }
 
     static int analizTextVig(String t, int b, int shag) {
@@ -175,7 +189,7 @@ public class Analiz {
         int znaki = 0;
         for (int i = 0; i < sizeText; i++) {
             int tempT = -1;
-            for (int j = 0; j < sizeAlph; j++) {
+            for (int j = 0; j < sizeAlph * 2; j++) {
                 if (t.charAt(i) == Alphabet.alph[j]) {
                     tempT = j;
                     break;
@@ -190,7 +204,7 @@ public class Analiz {
 	    char[] newText = new char[sizeNewText];
         for (int i = 0, k = 0; k < sizeNewText; i++) {
             int tempT = -1;
-            for (int j = 0; j < sizeAlph; j++) {
+            for (int j = 0; j < sizeAlph * 2; j++) {
                 if (t.charAt(i) == Alphabet.alph[j]) {
                     tempT = j;
                     break;
@@ -206,7 +220,7 @@ public class Analiz {
         }
 
         // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
-        for (int i = 1; i < sizeAlph; i += 2) {
+        for (int i = 1; i < sizeAlph * 2; i += 2) {
             int temp = 0;
             for (int j = b; j < sizeNewText; j += shag) {
                 if (Alphabet.alph[i] == newText[j]) {
