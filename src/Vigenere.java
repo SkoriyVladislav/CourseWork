@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -112,57 +113,64 @@ public class Vigenere implements Hackable{
 
     @Override
     public String hack(String t) {
-
+        List<Integer> myKey = new ArrayList<>();
         // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
         // и составляем массив с упорядоченными по частоте индексами букв алфавита
         int[] arrMaxIndex = Analiz.analizText(Analiz.textForAnaliz);
         // В этом блоке тоже самое что и в предыдущем только тут анализируем зашифрованный текст
         int[] arrMaxShifrIndex = Analiz.analizText(t);
 
-        cout << "Выебрите длину ключа: ";
-        cin >> sizeMyKey;
+        System.out.println( "Выебрите длину ключа: ");
+        Scanner sc = new Scanner(System.in);
+        int sizeMyKey = sc.nextInt();
+
         for (int i = 0; i < sizeMyKey; i++) {
+
             //cout << arrMaxIndex[i] << "   текст" << endl << Analiz::anText(alph, shifrText, i, sizeMyKey) << endl << endl;
-            myKey.push_back((2 * sizeAlph + Analiz::anText(alph, shifrText, i, sizeMyKey) - arrMaxIndex[0]) % (2 * sizeAlph) + 1);
+            myKey.add((2 * Alphabet.sizeAlph + Analiz.analizTextVig(t, i, sizeMyKey) - arrMaxIndex[0]) % (2 * Alphabet.sizeAlph) + 1);
         }
-        cout << "Я предполгагаю что ключ к этому тексту: ";
+
+        System.out.println( "Я предполгагаю что ключ к этому тексту: ");
         for (int i = 0; i < myKey.size(); i++) {
-            cout << alph[myKey[i]];
+            System.out.print(Alphabet.alph[myKey.get(i)]);
         }
-        cout << endl << endl;
+        System.out.println();
 
 
-        cout << "Введите 1, если данный ключ корректен." << endl;
-        cout << "Введите 2, если хотите заменить определённую букву ключа." << endl;
-        cin >> choise2;
+        System.out.println("Введите 1, если данный ключ корректен.");
+        System.out.println("Введите 2, если хотите заменить определённую букву ключа.");
+        int choise2 = sc.nextInt();
+
         switch (choise2) {
             case 1:
                 break;
             case 2:
-                for (; flag2 == 'д';) {
-                    cout << "Введите номер буквы которую хотите изменить: ";
-                    cin >> numb;
-                    cout << "Введите букву на которую хотите заменить: ";
-                    cin >> bukva;
-                    for (int i = 1; i < sizeAlph * 2; i = i + 2) {
-                        if (bukva == alph[i]) {
-                            myKey[numb - 1] = i;
+                String  flag2 = "д";
+                for (; flag2.equals("д");) {
+                    System.out.print("Введите номер буквы которую хотите изменить: ");
+                    int numb = sc.nextInt();
+                     System.out.print("Введите букву на которую хотите заменить: ");
+                    String bukva = sc.nextLine();
+                    for (int i = 1; i < Alphabet.sizeAlph * 2; i = i + 2) {
+                        if (bukva.charAt(0) == Alphabet.alph[i]) {
+                            myKey.set(numb - 1, i);
                         }
                     }
-                    cout << "Я предполгагаю что ключ к этому тексту: ";
+                    System.out.print("Я предполгагаю что ключ к этому тексту: ");
                     for (int i = 0; i < myKey.size(); i++) {
-                        cout << alph[myKey[i]];
+                        System.out.print(Alphabet.alph[myKey.get(i)]);
                     }
-                    cout << endl << endl;
-                    cout << "Если хотите продолжать исправять ключ введите 'д': ";
-                    cin >> flag2;
+                    System.out.println();
+                    System.out.println();
+                    System.out.print( "Если хотите продолжать исправять ключ введите 'д': ");
+                    flag2 = sc.nextLine();
                 }
                 break;
         }
 
-        stext = Vigenere::deshifr2(alph, shifrText, myKey);
 
 
-        return Ceasar.deshifr( t,(Alphabet.sizeAlph + (arrMaxShifrIndex[0] - arrMaxIndex[0])) % Alphabet.sizeAlph);
+
+        return Vigenere.deshifr(t, myKey);
     }
 }

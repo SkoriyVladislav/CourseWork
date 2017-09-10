@@ -68,7 +68,7 @@ public class Analiz {
     }
 
 
-    public short anVig(String t, int ma) {
+    public static void anVig(String t) {
         int sizeAlph = Alphabet.sizeAlph;
         int sizeText = t.length();
         double max = 0;
@@ -106,61 +106,11 @@ public class Analiz {
                 k++;
             }
         }
-        //////////////////////////////////////////////////////////////////////////////////////////////
 
-	    double[] arr1 = new double[sizeAlph / 2];
-        for (int i = 0; i < sizeAlph / 2; i++) {
-            arr1[i] = 0.0;
-        }
-
-        /*// В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
-        for (int i = 1, k = 0; i < sizeAlph; i += 2, k++) {
-            for (int j = 0; j < sizeText; j++) {
-                if (t.charAt(j) == Alphabet.alph[i]) {
-                    arr1[k]++;
-                }
-            }
-        }
-
-        for (int i = 0; i < sizeAlph / 2; i++) {
-            arr1[i] /= sizeText;
-        }
-
-        for (int i = 0; i < sizeAlph / 2; i++) {
-            arrMaxText[i] = arr1[i];
-        }
-
-        // Инициализируем упорядоченный массив из наиболее встречающихся букв (в процентах)
-        for (int repeat_counter = 0; repeat_counter < sizeAlph / 2; repeat_counter++) {
-            // временная переменная для хранения значения перестановки
-            double temp = arrMaxText[0];
-            for (int element_counter = repeat_counter + 1; element_counter < sizeAlph / 2; element_counter++) {
-                if (arrMaxText[repeat_counter] < arrMaxText[element_counter]) {
-                    temp = arrMaxText[repeat_counter];
-                    arrMaxText[repeat_counter] = arrMaxText[element_counter];
-                    arrMaxText[element_counter] = temp;
-                }
-            }
-        }
-
-        // Cоставляем массив с упорядоченными по частоте индексами букв алфавита
-        for (int i = 0; i < sizeAlph / 2; i++) {
-            int temp = 0;
-            for (int j = 0; j < sizeAlph / 2; j++) {
-                if (arrMaxText[i] == arr1[j]) {
-                    arr1[j] = 0;
-                    temp = j;
-                    break;
-                }
-            }
-            ma[i] = 1 + 2 * temp;
-        }
-
-*/
         char[] posl = { 'a', 'a' };
         char[] posl1 = { 'a', 'a' };
         char[] posl2 = { 'a', 'a' };
-        //vector<int> index(0);
+
         List<Integer> index = new ArrayList<>(0);
         int kol = 0;
         // Находим последовательность из двух букв которая встречается чаще всего
@@ -183,7 +133,7 @@ public class Analiz {
                 }
             }
         }
-        //cout << posl << endl << kol << endl;
+
         for (int i = 0; i < sizeNewText - 1; i++) {
             posl2[0] = newText[i];
             posl2[1] = newText[i + 1];
@@ -193,21 +143,12 @@ public class Analiz {
             }
         }
 
-	/*for (int i = 0; i < index.size(); i++) {
-		cout << index[i] << endl;
-	}*/
-        //cout << endl;
         List<Integer> dist = new ArrayList<>();
-        //vector<int> dist(0);
         for (int i = 0; i < index.size() - 1; i++) {
             dist.add(index.get(i + 1) - index.get(i));
         }
-	/*for (int i = 0; i < dist.size(); i++) {
-		cout << dist[i] << endl;
-	}
-	cout << endl;*/
+
         List<Integer> dlina = new ArrayList<>();
-        //vector<int> dlina(0);
         for (int i = 0; i < dist.size() - 1; i++) {
             for (int j = i + 1; j < dist.size(); j++) {
                 int temp = Analiz.nod(dist.get(i), dist.get(j));
@@ -223,6 +164,62 @@ public class Analiz {
         System.out.print( "Исходя из этого попытайтесь угадать длину ключевого слова." );
         System.out.print("Учтите что если введёное вами число не подойдет то ответ можно будет изменить." );
         return;
+    }
+
+    static int analizTextVig(String t, int b, int shag) {
+        int sizeAlph = Alphabet.sizeAlph;
+        int sizeText = t.length();
+        int max = 0;
+        int maxIndex = -1;
+
+        int znaki = 0;
+        for (int i = 0; i < sizeText; i++) {
+            int tempT = -1;
+            for (int j = 0; j < sizeAlph; j++) {
+                if (t.charAt(i) == Alphabet.alph[j]) {
+                    tempT = j;
+                    break;
+                }
+            }
+            if (tempT == -1) {
+                znaki++;
+            }
+        }
+
+        int sizeNewText = sizeText - znaki;
+	    char[] newText = new char[sizeNewText];
+        for (int i = 0, k = 0; k < sizeNewText; i++) {
+            int tempT = -1;
+            for (int j = 0; j < sizeAlph; j++) {
+                if (t.charAt(i) == Alphabet.alph[j]) {
+                    tempT = j;
+                    break;
+                }
+            }
+            if (tempT >= 0) {
+                if (tempT % 2 != 0)
+                    newText[k] = Alphabet.alph[tempT];
+                else
+                    newText[k] = Alphabet.alph[tempT + 1];
+                k++;
+            }
+        }
+
+        // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
+        for (int i = 1; i < sizeAlph; i += 2) {
+            int temp = 0;
+            for (int j = b; j < sizeNewText; j += shag) {
+                if (Alphabet.alph[i] == newText[j]) {
+                    temp++;
+                }
+            }
+            if (temp > max) {
+                max = temp;
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 
     static int nod(int a, int b) {

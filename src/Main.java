@@ -125,11 +125,12 @@ public class Main {
                     System.out.println(c1.hack(shifrText));
                     break;
                 case 6:
+                    Vigenere v1 = new Vigenere();
                     shifrText = Vigenere.shifr(forShifrText, key3222);
                     System.out.println("Вот зашифрованный текст: ");
                     System.out.println(shifrText);
 
-                    // В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
+                    /*// В этом блоке мы анализируем частоту встречаемости букв в заданном тексте
                     // и составляем массив с упорядоченными по частоте индексами букв алфавита
 
                     // Первый аргумент - алфавит, второй - зашифрованный текст, третий - массив для хранения частоты встечающихся букв, четвёрный - массив с индексами букв
@@ -179,16 +180,17 @@ public class Main {
                             break;
                     }
 
-                    stext = Vigenere.deshifr(shifrText, myKey);
-                    System.out.println(stext);
+                    stext = Vigenere.deshifr(shifrText, myKey);*/
+
+                    System.out.println(v1.hack(shifrText));
 
                     break;
                 case 7:
                     System.out.println();
-                    shifrMatrix = Kardano.shifr(alph, kard, KEYSIZE);
+                    shifrMatrix = Kardano.shifr(Alphabet.alph, kard, KEYSIZE);
                     for (int i = 0; i < KEYSIZE; i++) {
                         for (int j = 0; j < KEYSIZE; j++) {
-                            System.out.print(alph[shifrMatrix[i][j]] + "   ");
+                            System.out.print(Alphabet.alph[shifrMatrix[i][j]] + "   ");
                         }
                         System.out.println();
                     }
